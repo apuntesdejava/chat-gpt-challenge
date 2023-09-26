@@ -12,11 +12,12 @@ public abstract class Operation {
   protected float secondNumber;
 
   public void inputNumbers() {
-    var scanner = new Scanner(System.in);
-    System.out.print("Ingrese el primer número:");
-    firstNumber = scanner.nextFloat();
-    System.out.print("Ingrese el segundo número:");
-    secondNumber = scanner.nextFloat();
+    try (var scanner = new Scanner(System.in)) {
+      System.out.print("Ingrese el primer número:");
+      firstNumber = scanner.nextFloat();
+      System.out.print("Ingrese el segundo número:");
+      secondNumber = scanner.nextFloat();
+    }
   }
 
   protected abstract float getResult();

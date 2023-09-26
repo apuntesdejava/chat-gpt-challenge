@@ -23,7 +23,7 @@ public class CalculatorConsoleApp {
       try {
         showOptions();
         option = readOption();
-        if (!option.equals(Constants.EXIT_OPTION)) {
+        if (!Constants.EXIT_OPTION.equals(option)) {
           OperationFactory.getOperation(option).ifPresent(operation -> {
             operation.inputNumbers();
             operation.showResult();
@@ -38,12 +38,13 @@ public class CalculatorConsoleApp {
   }
 
   private String readOption() {
-    var scanner = new Scanner(System.in);
-    var option = scanner.nextLine();
-    if (VALID_OPTIONS.contains(option)) {
-      return option;
+    try (var scanner = new Scanner(System.in)) {
+      var option = scanner.nextLine();
+      if (VALID_OPTIONS.contains(option)) {
+        return option;
+      }
+      throw new IllegalArgumentException();
     }
-    throw new IllegalArgumentException();
   }
 
   private void showOptions() {
