@@ -1,2 +1,6 @@
 /.idea/
 **/target
+/TaskManagerConsoleApp/nbproject/
+**/nbactions.xml
+**/nbproject
+**/task_list*.list
